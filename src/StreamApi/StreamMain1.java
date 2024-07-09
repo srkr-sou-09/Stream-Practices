@@ -1,7 +1,9 @@
 package StreamApi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
     /* Followings are functional interface
@@ -53,7 +55,21 @@ public class StreamMain1 {
                 .forEach(System.out::println);
 
 
-        // Fid
+        // Find name of the batsmen whose avg  are greater than avg of all batsmen
+
+        Map<String,Integer> map1 = Map.of("Sachin",98,"Virat" ,87,"Rohit",80,"Ganguly" ,75,"Dravid",77,"Jadeja",50);
+        System.out.println(map1);
+
+
+
+        map1.keySet().stream()
+                .filter(ele->map1.get(ele)>map1.entrySet().stream()
+                        .mapToInt(e-> e.getValue())
+                        .average()
+                        .getAsDouble())
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+
 
 
     }
